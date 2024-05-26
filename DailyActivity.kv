@@ -1,0 +1,41 @@
+
+#!kivy 2.0.0
+<RootWidget>:
+    md_bg_color: app.theme_cls.surfaceColor
+    MDBoxLayout:
+        orientation: "vertical"
+        MDTopAppBar:
+            type: 'small'
+            MDTopAppBarLeadingButtonContainer:
+                MDActionTopAppBarButton:
+                    icon: "menu"
+                    on_release: nav_drawer.set_state("toggle")
+            MDTopAppBarTitle:
+                text: "AppBar Center-aligned"
+        
+        MDNavigationLayout:
+            id: nav_layout
+        
+            ManagerScreen:
+                id: manager_screen
+                size_hint: 1, 1
+                MainScreenView
+                SettingsView:
+                    name:'SettingsView'
+            
+            MDNavigationDrawer:
+                id: nav_drawer
+                radius: 0
+                md_bg_color: "orange"
+                MDNavigationDrawerMenu:
+                    MDNavigationDrawerLabel:
+                        text: "DailyActivity App"
+                    MDNavigationDrawerItem:
+                        on_release: manager_screen.SwitchScreenCallback('SettingsView')
+                        MDNavigationDrawerItemLeadingIcon:
+                            icon: "account"
+                        
+                        MDNavigationDrawerItemText : 
+                            text: "Inbox"
+                        
+                    MDNavigationDrawerDivider
